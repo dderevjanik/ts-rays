@@ -1,4 +1,4 @@
-interface IInputs {
+export interface IInputs {
     keyPress: number;
     keyDown: number;
     keyUp: number;

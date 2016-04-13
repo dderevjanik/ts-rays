@@ -36,7 +36,7 @@ export const renderState = (gameState: IGameState): void => {
         vect: (player.speed * player.moveSpeed)
     }];
     renderMinimap(gameState.ui.minimap.ctx, 20, gameState.map, renderActors);
-    castRays(player.x, player.y, (player.rot + (player.dir * player.rotSpeed)), player.fov, 160).forEach((ray: IRay) => {
+    castRays(player.x, player.y, (player.rot + (player.dir * player.rotSpeed)), player.fov, 50).forEach((ray: IRay) => {
         Draw.drawLine(gameState.ui.minimap.ctx,
                     ray.x, ray.y,
                     ray.distX, ray.distY,

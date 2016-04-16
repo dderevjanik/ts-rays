@@ -39,7 +39,7 @@ const renderMinimap = (ctx: CanvasRenderingContext2D, scale: number, map: Array<
         });
     });
     actorsToRender.forEach((actor: IActor) => {
-        renderMiniBlockOnMMap(actor.minimapClr, actor.x, actor.y);
+        // renderMiniBlockOnMMap(actor.minimapClr, actor.x, actor.y);
         renderRayOnMMap('red', actor.x, actor.y, actor.rot);
     });
 };

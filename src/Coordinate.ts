@@ -12,8 +12,8 @@ type PointToCell = (x: number, y: number) => ICell;
  * @retunr {IPoint}
  */
 const getWPos = (scale: number, row: number, col: number): IPoint => ({
-    x: (col * scale),
-    y: (row * scale)
+    x: (col),
+    y: (row)
 });
 
 /**
@@ -24,8 +24,8 @@ const getWPos = (scale: number, row: number, col: number): IPoint => ({
  * @retunr {ICell}
  */
 const getCPos = (scale: number, x: number, y: number): ICell => ({
-    row: (Math.floor(y / scale)),
-    col: (Math.floor(x / scale))
+    row: (Math.floor(y)),
+    col: (Math.floor(x))
 });
 
 /**

@@ -15,7 +15,7 @@ export const castRays = (x: number, y: number, rot: number, fov: number, count: 
     const castRayFromPosition: (rot: number) => IRay
         = castRay.bind(this, 10, x, y);
     const dRot: number = (Math.PI / (180 / fov)) / count;
-    const center: number = rot - dRot * (count / 2);
+    const center: number = rot - dRot * (count / 2) + (dRot / 2);
     const rays: Array<IRay> = repeat(count, (index): IRay =>
         castRayFromPosition(index * dRot + center));
     return rays;
@@ -23,7 +23,7 @@ export const castRays = (x: number, y: number, rot: number, fov: number, count: 
 
 export const nextState = (gameState: IGameState, inputs: IInputs): IGameState => {
     const control: IGameState = processControl(gameState, inputs);
-    control.player = movePlayer(control.player);
+    control.player = movePlayer(control.player, gameState.map);
     return gameState;
 };
 

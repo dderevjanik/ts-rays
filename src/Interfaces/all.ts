@@ -5,4 +5,4 @@ export * from './IInputs';
 export * from './IPlayer';
 export * from './IPoint';
 export * from './IRay';
-export * from './IRenderActor';
+export * from './IActor';

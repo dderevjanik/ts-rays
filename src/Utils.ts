@@ -2,7 +2,7 @@
  * Repeat specific function several times
  * @param {number} count - how many times repeat function
  * @param {function} callback - function to repeat
- * @retunr {Array<T>} result of functions
+ * @return {Array<T>} result of functions
  */
 export const repeat = <T>(count: number, callback: (number) => T): Array<T> => {
     const arr: Array<T> = [];

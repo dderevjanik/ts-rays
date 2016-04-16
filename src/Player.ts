@@ -14,6 +14,7 @@ export const movePlayer = (player: IPlayer): IPlayer => {
         moveSpeed: player.moveSpeed,
         rotSpeed: player.rotSpeed,
         minimapClr: player.minimapClr,
-        fov: player.fov
+        fov: player.fov,
+        showFov: player.showFov
     };
 };

@@ -1,13 +1,7 @@
-import IPoint from './IPoint';
+import IActor from './IActor';
 
-export interface IPlayer extends IPoint{
-    dir: number;
-    rot: number;
-    speed: number;
-    moveSpeed: number;
-    rotSpeed: number;
-    minimapClr: string;
-    fov: number;
+export interface IPlayer extends IActor{
+
 };
 
 export default IPlayer;

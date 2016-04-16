@@ -23,7 +23,8 @@ export const gameState: IGameState = {
         moveSpeed: 0.18,
         rotSpeed: 6 * Math.PI / 180,
         minimapClr: 'red',
-        fov: 60
+        fov: 60,
+        showFov: true
     }
 };
 

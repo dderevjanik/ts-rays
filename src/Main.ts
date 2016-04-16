@@ -33,6 +33,7 @@ const clearInputs = (): void => {
 };
 
 // Cycle
+
 const fps: number = 1000 / staticData.maxFps;
 const makeTick = (gameState: IGameState): void => {
     tick++;

@@ -4,14 +4,19 @@ import {processControl} from './Control';
 import {movePlayer} from './Player';
 import {repeat} from './Utils';
 
+export const castRay = (length: number, x: number, y: number, rot: number): IRay => ({
+    x: x,
+    y: y,
+    distX: x + (Math.cos(rot) * length),
+    distY: y + (Math.sin(rot) * length)
+});
+
 export const castRays = (x: number, y: number, rot: number, fov: number, count: number): Array<IRay> => {
     const dRot: number = (Math.PI / (180 / fov)) / count;
-    const rays: Array<IRay> = repeat(count, (index): IRay => ({
-        x: x,
-        y: y,
-        distX: x + (Math.cos(rot + index * dRot) * 10),
-        distY: y + (Math.sin(rot + index * dRot) * 10),
-    }));
+    const center: number = rot - dRot * (count / 2);
+    const castRayFromPosition: (rot: number) => IRay = castRay.bind(this, 10, x, y);
+    const rays: Array<IRay> = repeat(count, (index): IRay =>
+        castRayFromPosition(index * dRot + center));
     return rays;
 };
 
@@ -22,5 +27,7 @@ export const nextState = (gameState: IGameState, inputs: IInputs): IGameState =>
 };
 
 export default {
-    nextState: nextState
+    castRay: castRay,
+    castRays: castRays,
+    nextState: nextState,
 };

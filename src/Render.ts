@@ -42,13 +42,13 @@ export const renderState = (gameState: IGameState): void => {
     const renderActors: Array<IRenderActor> = [{
         x: player.x,
         y: player.y,
-        rot: (player.rot + (player.dir * player.rotSpeed)),
+        rot: player.rot,
         minimapClr: 'red',
         vect: (player.speed * player.moveSpeed)
     }];
     staticData.ui.minimap.ctx.clearRect(0, 0, staticData.ui.minimap.element.width, staticData.ui.minimap.element.height);
     renderMinimapOnCtx(gameState.map, renderActors);
-    castRays(player.x, player.y, (player.rot + (player.dir * player.rotSpeed)), player.fov, 50).forEach((ray: IRay) => {
+    castRays(player.x, player.y, player.rot, player.fov, staticData.rays).forEach((ray: IRay) => {
         drawLineOnMMap('green', ray.x, ray.y, ray.distX, ray.distY);
     });
 };

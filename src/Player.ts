@@ -1,5 +1,4 @@
-import IPoint from './Interfaces/IPoint';
-import IPlayer from './Interfaces/IPlayer';
+import {IPlayer, IPoint} from './Interfaces/all';
 import {calcNewPoint} from './Trigonometry.ts';
 
 export const movePlayer = (player: IPlayer): IPlayer => {

@@ -24,13 +24,7 @@ export const gameState: IGameState = {
         rotSpeed: 6 * Math.PI / 180,
         minimapClr: 'red',
         fov: 60
-    },
-    ui: {
-        minimap: {
-            ctx: (<HTMLCanvasElement> document.getElementById('canvas')).getContext('2d'),
-            scale: 20
-        }
-    },
-    rays: 256,
-    maxFps: 60
+    }
 };
+
+export default gameState;

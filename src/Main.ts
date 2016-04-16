@@ -1,8 +1,8 @@
 import {renderState} from './Render';
 import {gameState} from './GameState';
+import {staticData} from './StaticData';
 import {nextState} from './Logic';
-import IGameState from './Interfaces/IGameState';
-import IInputs from './Interfaces/IInputs';
+import {IGameState, IInputs} from './Interfaces/all';
 
 // Mut
 
@@ -32,6 +32,8 @@ const clearInputs = (): void => {
     keyUp = null;
 };
 
+// Cycle
+const fps: number = 1000 / staticData.maxFps;
 const makeTick = (gameState: IGameState): void => {
     tick++;
     console.log('.');
@@ -45,7 +47,7 @@ const makeTick = (gameState: IGameState): void => {
     clearInputs();
     setTimeout(() => {
         makeTick(newState);
-    }, 1000 / gameState.maxFps);
+    }, fps);
 };
 
 console.log(gameState);

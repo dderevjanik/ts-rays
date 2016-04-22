@@ -33,14 +33,14 @@ const renderMinimap = (ctx: CanvasRenderingContext2D, scale: number, map: Array<
             }
         });
     });
+    actorsToRender.forEach((actor: IActor) => {
+        // renderMiniBlockOnMMap(actor.minimapClr, actor.x, actor.y);
+        renderRayOnMMap('red', actor.x, actor.y, actor.rot);
+    });
     actorsToRenderRC.forEach((actor: IActor) => {
         castRays(actor.x, actor.y, actor.rot, actor.fov, staticData.rays).forEach((ray: IRay) => {
             drawLineOnMMap('green', ray.x, ray.y, ray.distX, ray.distY);
         });
-    });
-    actorsToRender.forEach((actor: IActor) => {
-        // renderMiniBlockOnMMap(actor.minimapClr, actor.x, actor.y);
-        renderRayOnMMap('red', actor.x, actor.y, actor.rot);
     });
 };
 

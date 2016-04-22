@@ -9,8 +9,8 @@ export const staticData: IStaticData = {
             rayLength: 200
         }
     },
-    rays: 6,
-    maxFps: 30
+    rays: 1,
+    maxFps: 15
 };
 
 export default staticData;

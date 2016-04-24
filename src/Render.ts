@@ -38,7 +38,7 @@ const renderMinimap = (ctx: CanvasRenderingContext2D, scale: number, map: Array<
         renderRayOnMMap('red', actor.x, actor.y, actor.rot);
     });
     actorsToRenderRC.forEach((actor: IActor) => {
-        castRays(actor.x, actor.y, actor.rot, actor.fov, staticData.rays).forEach((ray: IRay) => {
+        castRays(map, actor.x, actor.y, actor.rot, actor.fov, staticData.rays).forEach((ray: IRay) => {
             drawLineOnMMap('green', ray.x, ray.y, ray.distX, ray.distY);
         });
     });

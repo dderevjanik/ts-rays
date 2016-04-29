@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dderevjanik/AgeScxJS.git"
+    "url": "git+https://github.com/dderevjanik/ts-rays.git"
   },
   "keywords": [
     "rays",

@@ -9,7 +9,7 @@ module.exports = {
     cache: true,
     entry: webpackConfig.entry,
     debug: true,
-    devtools: 'source-map',
+    devtool: 'source-map',
     target: 'node',
     output: {
         path: path.resolve(__dirname + '/build'),

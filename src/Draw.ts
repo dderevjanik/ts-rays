@@ -1,6 +1,23 @@
 import {IPoint, ICell, IGameState} from './Interfaces/all';
 import {gameState} from './GameState';
 
+export const drawPoint = (ctx: CanvasRenderingContext2D, scale: number, size: number, color: string, x: number, y: number): void => {
+    const half: number = (size / 2);
+    ctx.fillStyle = color;
+    ctx.fillRect(
+        (x * scale) - half,
+        (y * scale) - half,
+        half,
+        half
+    )
+};
+
+export const drawText = (ctx: CanvasRenderingContext2D, scale: number, textSize: number, color: string, x: number, y: number, text: string): void => {
+    ctx.font = 'sans-serif';
+    ctx.fillStyle = color;
+    ctx.fillText(text, x * scale, y * scale);
+};
+
 export const drawBlock = (ctx: CanvasRenderingContext2D, scale: number, color: string, x: number, y: number): void => {
     ctx.fillStyle = color;
     ctx.fillRect(
@@ -30,5 +47,7 @@ export const drawLine = (ctx: CanvasRenderingContext2D, scale: number, color: st
 export default {
     drawBlock: drawBlock,
     drawMiniBlock: drawMiniBlock,
-    drawLine: drawLine
+    drawText: drawText,
+    drawLine: drawLine,
+    drawPoint: drawPoint
 };

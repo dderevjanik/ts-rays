@@ -4,7 +4,7 @@ import {IActor, IRay, IPoint, IGameState, IPlayer} from './Interfaces/all';
 import {staticData} from './StaticData';
 import {calcNewPoint} from './Trigonometry';
 
-const drawLineOnMMap: (color: string, sX: number, xY: number, x: number, y: number) => void
+export const drawLineOnMMap: (color: string, sX: number, xY: number, x: number, y: number) => void
     = Draw.drawLine.bind(this, staticData.ui.minimap.ctx, staticData.ui.minimap.scale);
 
 const renderRay = (ctx: CanvasRenderingContext2D, scale: number, length: number, color: string, sX: number, sY: number, rot: number): void => {
@@ -14,6 +14,12 @@ const renderRay = (ctx: CanvasRenderingContext2D, scale: number, length: number,
 
 const renderRayOnMMap: (color: string, x: number, y: number, rot: number) => void
     = renderRay.bind(this, staticData.ui.minimap.ctx, staticData.ui.minimap.scale, staticData.ui.minimap.rayLength);
+
+export const renderPoint
+    = Draw.drawPoint.bind(this, staticData.ui.minimap.ctx, staticData.ui.minimap.scale, 10);
+
+export const renderText: (textSize: number, color: string, x: number, y: number, text: string) => void
+    = Draw.drawText.bind(this, staticData.ui.minimap.ctx, staticData.ui.minimap.scale)
 
 const renderMinimap = (ctx: CanvasRenderingContext2D, scale: number, map: Array<Array<number>>, actors: Array<IActor>): void => {
     const renderBlockOnMMap: (color: string, c: number, r: number) => void
@@ -39,7 +45,9 @@ const renderMinimap = (ctx: CanvasRenderingContext2D, scale: number, map: Array<
     });
     actorsToRenderRC.forEach((actor: IActor) => {
         castRays(map, actor.x, actor.y, actor.rot, actor.fov, staticData.rays).forEach((ray: IRay) => {
-            drawLineOnMMap('green', ray.x, ray.y, ray.distX, ray.distY);
+            // drawLineOnMMap('green', ray.x, ray.y, ray.distX, ray.distY);
+            // drawLineOnMMap('yellow', actor.x, actor.y, ray.hInters[ray.hInters.length - 1][0], ray.hInters[ray.hInters.length - 1][1]);
+            // drawLineOnMMap('purple', actor.x, actor.y, ray.vInters[ray.vInters.length - 1][0], ray.vInters[ray.vInters.length - 1][1]);
         });
     });
 };

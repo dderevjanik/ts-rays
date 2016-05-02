@@ -48,6 +48,7 @@ export const castRay = (map: Array<Array<number>>, x: number, y: number, test: t
 
     let side: number; // NS or EcS wall hit ?
     let i: number = 1;
+    let hit: number = 0;
     while(test(row, cell)) {
         if (sideDistX < sideDistY) {
             sideDistX += deltaDistX;
@@ -72,9 +73,9 @@ export const castRay = (map: Array<Array<number>>, x: number, y: number, test: t
     }
 
     if (side === 1) {
-        drawLineOnMMap('green', x, y, vHitX, vHitY);
+        drawLineOnMMap('green', x, y, vHitX - vdX, vHitY - stepY);
     } else {
-        drawLineOnMMap('green', x, y, hHitX, hHitY);
+        drawLineOnMMap('green', x, y, hHitX - stepX, hHitY - hdY);
     }
 
     return {

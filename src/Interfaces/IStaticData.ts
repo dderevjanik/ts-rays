@@ -20,6 +20,7 @@ export interface IStaticData {
     ui: IUI;
     rays: number;
     maxFps: number;
+    textures: HTMLImageElement;
 }
 
 export default IStaticData;

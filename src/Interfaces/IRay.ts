@@ -1,8 +1,11 @@
 import IPoint from './IPoint';
+import {intersections} from './../Primitives';
 
 export interface IRay extends IPoint {
-    distX: number;
-    distY: number;
+    dist: number;
+    side: number;
+    row: number;
+    cell: number;
 };
 
 export default IRay;

@@ -1,3 +1,9 @@
+export interface IPlot {
+    element: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+
+};
+
 export interface IMiniMapUI {
     element: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
@@ -6,6 +12,7 @@ export interface IMiniMapUI {
 };
 
 export interface IUI {
+    plot: IPlot;
     minimap: IMiniMapUI;
 };
 

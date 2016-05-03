@@ -29,14 +29,14 @@ export const castRay = (map: Array<Array<number>>, x: number, y: number, test: t
     // horizontal hit
     let hHitX: number = (quadrant.right) ? Math.ceil(x) : cell;
     let hHitY: number = y + ((hHitX - x) * hSlope);
-        renderPoint('green', hHitX, hHitY);
-        renderText(10, 'green', hHitX, hHitY, 'hHit');
+        // renderPoint('green', hHitX, hHitY);
+        // renderText(10, 'green', hHitX, hHitY, 'hHit');
 
     // vertical hit
     let vHitY: number = (quadrant.top) ? row : Math.ceil(y);
     let vHitX: number = x + ((vHitY - y) * vSlope);
-        renderPoint('red', vHitX, vHitY);
-        renderText(10, 'red', vHitX, vHitY, 'vHit');
+        // renderPoint('red', vHitX, vHitY);
+        // renderText(10, 'red', vHitX, vHitY, 'vHit');
 
     // distance from current point to nearest x || y side
     let sideDistX: number = Math.sqrt((hHitX - x)**2 + (hHitY - y)**2);
@@ -56,16 +56,16 @@ export const castRay = (map: Array<Array<number>>, x: number, y: number, test: t
             hHitY += hdY;
             cell += stepX;
             side = 0;
-                renderPoint('green', hHitX, hHitY);
-                renderText(10, 'white', hHitX, hHitY, '' + i);
+                // renderPoint('green', hHitX, hHitY);
+                // renderText(10, 'white', hHitX, hHitY, '' + i);
         } else {
             sideDistY += deltaDistY;
             vHitX += vdX;
             vHitY += stepY;
             row += stepY;
             side = 1;
-                renderPoint('red', vHitX, vHitY);
-                renderText(10, 'white', vHitX, vHitY, '' + i);
+                // renderPoint('red', vHitX, vHitY);
+                // renderText(10, 'white', vHitX, vHitY, '' + i);
         }
         i += 1;
         // renderPoint('white', cell + 0.6, row + 0.6);
@@ -79,8 +79,12 @@ export const castRay = (map: Array<Array<number>>, x: number, y: number, test: t
     }
 
     return {
-        hInters: [],
-        vInters: []
+        dist: (!side) ? (sideDistX - deltaDistX) : (sideDistY - deltaDistY),
+        side: side,
+        x: (side) ? (vHitX - vdX) : (hHitX - stepX),
+        y: (side) ? (vHitY - stepY) : (vHitY - hdY),
+        row: row,
+        cell: cell
     };
 };
 

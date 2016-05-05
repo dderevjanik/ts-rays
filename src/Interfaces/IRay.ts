@@ -5,7 +5,7 @@ export interface IRay extends IPoint {
     dist: number;
     side: number;
     row: number;
-    cell: number;
+    column: number;
 };
 
 export default IRay;

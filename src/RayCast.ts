@@ -5,7 +5,7 @@ import {calcNewPoint, getQuadrant, normalizeAngle} from './Trigonometry';
 import {repeat} from './Utils';
 import {renderPoint, drawLineOnMMap, renderText} from './Render';
 
-type testfunction = (row: number, cell: number) => boolean;
+type testfunction = (row: number, column: number, index: number) => boolean;
 
 export const castRay = (map: Array<Array<number>>, rot: number, x: number, y: number, test: testfunction, rayRot: number): IRay => {
     const rayAngle: number = normalizeAngle(rayRot);
@@ -14,7 +14,7 @@ export const castRay = (map: Array<Array<number>>, rot: number, x: number, y: nu
     const quadrant: IQuadrant = getQuadrant(rayRot);
 
     // current cell position in map
-    let cell: number = Math.floor(x);
+    let column: number = Math.floor(x);
     let row: number = Math.floor(y);
 
     const hSlope: number = (angleSin / angleCos);
@@ -27,16 +27,12 @@ export const castRay = (map: Array<Array<number>>, rot: number, x: number, y: nu
     const vdX: number = stepY * vSlope;
 
     // horizontal hit
-    let hHitX: number = (quadrant.right) ? Math.ceil(x) : cell;
+    let hHitX: number = (quadrant.right) ? Math.ceil(x) : column;
     let hHitY: number = y + ((hHitX - x) * hSlope);
-        // renderPoint('green', hHitX, hHitY);
-        // renderText(10, 'green', hHitX, hHitY, 'hHit');
 
     // vertical hit
     let vHitY: number = (quadrant.top) ? row : Math.ceil(y);
     let vHitX: number = x + ((vHitY - y) * vSlope);
-        // renderPoint('red', vHitX, vHitY);
-        // renderText(10, 'red', vHitX, vHitY, 'vHit');
 
     // distance from current point to nearest x || y side
     let sideDistX: number = Math.sqrt((hHitX - x)**2 + (hHitY - y)**2);
@@ -47,35 +43,23 @@ export const castRay = (map: Array<Array<number>>, rot: number, x: number, y: nu
     const deltaDistY: number = Math.sqrt(vdX**2 + stepY**2);
 
     let side: number; // NS or ES wall hit ?
-    let i: number = 1;
+    let i: number = 0;
     let hit: number = 0;
-    while(test(row, cell)) {
+    while(test(row, column, i)) {
         if (sideDistX < sideDistY) {
             sideDistX += deltaDistX;
             hHitX += stepX;
             hHitY += hdY;
-            cell += stepX;
+            column += stepX;
             side = 0;
-                // renderPoint('green', hHitX, hHitY);
-                // renderText(10, 'white', hHitX, hHitY, '' + i);
         } else {
             sideDistY += deltaDistY;
             vHitX += vdX;
             vHitY += stepY;
             row += stepY;
             side = 1;
-                // renderPoint('red', vHitX, vHitY);
-                // renderText(10, 'white', vHitX, vHitY, '' + i);
         }
         i += 1;
-        // renderPoint('white', cell + 0.6, row + 0.6);
-        // renderText(10, 'white', cell, row, '' + i);
-    }
-
-    if (side === 1) {
-        drawLineOnMMap('green', x, y, vHitX - vdX, vHitY - stepY);
-    } else {
-        drawLineOnMMap('blue', x, y, hHitX - stepX, hHitY - hdY);
     }
 
     return {
@@ -91,7 +75,7 @@ export const castRay = (map: Array<Array<number>>, rot: number, x: number, y: nu
             ? (vHitY - stepY)
             : (hHitY - hdY),
         row: row,
-        cell: cell
+        column: column
     };
 };
 

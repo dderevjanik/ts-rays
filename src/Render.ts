@@ -19,7 +19,8 @@ export const renderPoint
     = Draw.drawPoint.bind(this, staticData.ui.minimap.ctx, staticData.ui.minimap.scale, 10);
 
 export const renderWall = (color: string, stripX: number, h: number) => {
-    Draw.drawLine(staticData.ui.plot.ctx, 1, color, stripX, 150 - h, stripX, 150 + h);
+    // Draw.drawLine(staticData.ui.plot.ctx, 1, color, stripX, 150 - h, stripX, 150 + h);
+    Draw.drawRect(staticData.ui.plot.ctx, 1, color, stripX, 150 - h, 1, 2*h);
 };
 
 export const renderText: (textSize: number, color: string, x: number, y: number, text: string) => void
@@ -64,9 +65,12 @@ export const renderState = (gameState: IGameState): void => {
     const renderActors: Array<IActor> = [player];
     staticData.ui.minimap.ctx.clearRect(0, 0, staticData.ui.minimap.element.width, staticData.ui.minimap.element.height);
     staticData.ui.plot.ctx.clearRect(0, 0, staticData.ui.plot.element.width, staticData.ui.plot.element.height);
+    staticData.ui.plot.ctx.fillStyle = "grey";
+    staticData.ui.plot.ctx.fillRect(0, 150, 300, 300);
     renderMinimapOnCtx(gameState.map, renderActors);
 };
 
 export default {
     renderState: renderState
+
 };

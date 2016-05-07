@@ -12,6 +12,16 @@ export const drawPoint = (ctx: CanvasRenderingContext2D, scale: number, size: nu
     )
 };
 
+export const drawRect = (ctx: CanvasRenderingContext2D, scale: number, color: string, x: number, y: number, w: number, h: number): void => {
+    ctx.fillStyle = color;
+    ctx.fillRect(
+        x * scale,
+        y * scale,
+        w * scale,
+        h * scale
+    );
+};
+
 export const drawText = (ctx: CanvasRenderingContext2D, scale: number, textSize: number, color: string, x: number, y: number, text: string): void => {
     ctx.font = 'sans-serif';
     ctx.fillStyle = color;
@@ -38,6 +48,7 @@ export const drawMiniBlock = (ctx: CanvasRenderingContext2D, scale: number, colo
 
 export const drawLine = (ctx: CanvasRenderingContext2D, scale: number, color: string, x1: number, y1: number, x2: number, y2: number): void => {
     ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x1 * scale, y1 * scale);
     ctx.lineTo(x2 * scale, y2 * scale);
@@ -49,5 +60,6 @@ export default {
     drawMiniBlock: drawMiniBlock,
     drawText: drawText,
     drawLine: drawLine,
-    drawPoint: drawPoint
+    drawPoint: drawPoint,
+    drawRect: drawRect
 };

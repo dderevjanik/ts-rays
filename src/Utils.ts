@@ -17,14 +17,15 @@ export const repeat = <T>(count: number, callback: (number) => T): Array<T> => {
  * @param {function} callback - this function create output <T>, which will be tested
  * @param {function} test - test output data <T> of doFunction, if fails, then break
  * @param {function} processOutput - if test pass, then this function process output <T> of doFunction
+ * @param {T} prev - callback will be fired first time with this data
  * @retun {Array<U>}
  */
-export const doUntil = <T, U>(callback: (prev: Array<U>) => T, test: (T) => boolean, processOutput: (T) => U): Array<U> => {
+export const doUntil = <T, U>(callback: (prev: T) => U, test: (U) => boolean, processOutput: (U) => T, prev: T): Array<U> => {
     const arr: Array<U> = [];
-    let output: T = callback(arr);
+    let output: U = callback(prev);
     while(test(output)) {
-        arr.push(processOutput(output));
-        output = callback(arr);
+        arr.push(output);
+        output = callback(processOutput(output));
     }
     return arr;
 };

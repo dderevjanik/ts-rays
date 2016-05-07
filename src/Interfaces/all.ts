@@ -1,6 +1,7 @@
 export * from './IActor';
 export * from './ICell';
 export * from './IGameState';
+export * from './IHitPoint';
 export * from './IInputs';
 export * from './IPlayer';
 export * from './IPoint';
